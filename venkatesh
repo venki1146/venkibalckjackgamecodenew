@@ -1,0 +1,134 @@
+using System;
+
+namespace BlackJackGame
+{
+	class BlackjackGame
+	{
+		static string[] playerCards = new string[11];
+		static string YesOrNo = "";
+		static int total = 0, count = 1, TotalVal = 0;
+		static Random cardRandomizer = new Random();
+
+		static void Main(string[] args)
+		{
+			Console.Title = "Venkatesh Blackjack Game Application";
+			Start();
+		}
+
+		static void Start()
+		{
+			TotalVal = cardRandomizer.Next(1, 10);
+			playerCards[0] = Deal();
+			playerCards[1] = Deal();
+			do
+			{
+				Console.WriteLine("Welcome to Blackjack! You were dealed " + playerCards[0] + " and " + playerCards[1] + ". \nYour total is " + total + ".\nDo you want another card YES/NO?");
+				YesOrNo = Console.ReadLine().ToLower();
+			} while (!YesOrNo .Equals("Yes") && !YesOrNo .Equals("No"));
+			Game();
+		}
+
+		static void Game()
+		{
+			if (YesOrNo .Equals("Yes"))
+			{
+				Hit();
+			}
+			else if (YesOrNo.Equals("No"))
+			{
+				if (total > TotalVal && total <= 21)
+				{
+					Console.WriteLine("\nCongrats! You won the game! Your's total was " + TotalVal + ".\nWould you like to play again? y/n");
+					PlayAgain();
+				}
+				else if (total < TotalVal&& total>17 )
+				{
+					Console.WriteLine("\nSorry, you lost! The your total was " + TotalVal + ".\nWould you like to play again? y/n");
+					PlayAgain();
+				}
+
+			}
+			Console.ReadLine();
+		}
+
+		static string Deal()
+		{
+			string Card = "";
+			int cards = cardRandomizer.Next(1, 10);
+			switch (cards)
+			{
+				case 1: Card = "Two"; total += 2;
+					break;
+				case 2: Card = "Three"; total += 3;
+					break;
+				case 3: Card = "Four"; total += 4;
+					break;
+				case 4: Card = "Five"; total += 5;
+					break;
+				case 5: Card = "Six"; total += 6;
+					break;
+				case 6: Card = "Seven"; total += 7;
+					break;
+				case 7: Card = "Eight"; total += 8;
+					break;
+				case 8: Card = "Nine"; total += 9;
+					break;
+				case 9: Card = "Ten"; total += 10;
+					break;
+				
+				default: Card = "2"; total += 2;
+					break;
+			}
+			return Card;
+		}
+
+		static void Hit()
+		{
+			count += 1;
+			playerCards[count] = Deal();
+			Console.WriteLine("\nYou were dealed a(n) " + playerCards[count] + ".\nYour new total is " + total + ".");
+			
+			if (total > 21)
+			{
+				Console.WriteLine("\n you lost. Sorry.  yours's total was " + TotalVal );
+				
+			}
+			else(total <=21)
+			{
+				do
+				{
+					Console.WriteLine("\nWould you like to take another card?");
+					YesOrNo = Console.ReadLine().ToLower();
+				} while (!YesOrNo .Equals("Yes") && !YesOrNo .Equals("No"));
+				Game();
+			}
+		}
+		static void PlayAgain()
+		{
+			string playAgain = "";
+			do
+			{
+				playAgain = Console.ReadLine().ToLower();
+			} while (!playAgain.Equals("y") && !playAgain.Equals("n"));
+			if (playAgain.Equals("y"))
+			{
+				Console.WriteLine("\nPress enter to restart the game!");
+				Console.ReadLine();
+				Console.Clear();
+				Totalval = 0;
+				count = 1;
+				total = 0;
+				Start();
+			}
+			else if (playAgain.Equals("n"))
+			{
+				Console.WriteLine("\nPress enter to close Blackjack.");
+				Console.ReadLine();
+				Environment.Exit(0);
+			}
+	   
+		}
+
+
+	}
+} 
