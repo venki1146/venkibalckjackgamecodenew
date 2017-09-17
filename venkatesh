@@ -2,31 +2,6 @@ using System;
 
 namespace BlackJackGame
 {
-	class BlackjackGame
-	{
-		static string[] playerCards = new string[11];
-		static string YesOrNo = "";
-		static int total = 0, count = 1, TotalVal = 0;
-		static Random cardRandomizer = new Random();
-
-		static void Main(string[] args)
-		{
-			Console.Title = "Venkatesh Blackjack Game Application";
-			Start();
-		}
-
-		static void Start()
-		{
-			TotalVal = cardRandomizer.Next(1, 10);
-			playerCards[0] = Deal();
-			playerCards[1] = Deal();
-			do
-			{
-				Console.WriteLine("Welcome to Blackjack! You were dealed " + playerCards[0] + " and " + playerCards[1] + ". \nYour total is " + total + ".\nDo you want another card YES/NO?");
-				YesOrNo = Console.ReadLine().ToLower();
-			} while (!YesOrNo .Equals("Yes") && !YesOrNo .Equals("No"));
-			Game();
-		}
 
 		static void Game()
 		{
@@ -49,10 +24,9 @@ namespace BlackJackGame
 
 			}
 			Console.ReadLine();
-		}
 
-		static string Deal()
-		{
+			static string Deal()
+			{
 			string Card = "";
 			int cards = cardRandomizer.Next(1, 10);
 			switch (cards)
@@ -80,10 +54,10 @@ namespace BlackJackGame
 					break;
 			}
 			return Card;
-		}
+			}
 
-		static void Hit()
-		{
+			static void Hit()
+			{
 			count += 1;
 			playerCards[count] = Deal();
 			Console.WriteLine("\nYou were dealed a(n) " + playerCards[count] + ".\nYour new total is " + total + ".");
@@ -102,7 +76,7 @@ namespace BlackJackGame
 				} while (!YesOrNo .Equals("Yes") && !YesOrNo .Equals("No"));
 				Game();
 			}
-		}
+			}
 		static void PlayAgain()
 		{
 			string playAgain = "";
@@ -128,7 +102,91 @@ namespace BlackJackGame
 			}
 	   
 		}
+		}
+	}	
+
+
+	class BlackjackGame:Game //Inheriting required methods
+	{
+		static string[] playerCards = new string[11];
+		static string YesOrNo = "";
+		static int total = 0, count = 1, TotalVal = 0;
+		static Random cardRandomizer = new Random();
+
+		static void Main(string[] args)
+		{
+			Console.Title = "Venkatesh Blackjack Game Application";
+			Start();
+		}
+
+		static void Start()
+		{
+			TotalVal = cardRandomizer.Next(1, 10);
+			playerCards[0] = Deal();
+			playerCards[1] = Deal();
+			do
+			{
+				Console.WriteLine("Welcome to Blackjack! You were dealed " + playerCards[0] + " and " + playerCards[1] + ". \nYour total is " + total + ".\nDo you want another card YES/NO?");
+				YesOrNo = Console.ReadLine().ToLower();
+			} while (!YesOrNo .Equals("Yes") && !YesOrNo .Equals("No"));
+			Game();
+		}
+
+		
+
+		
 
 
 	}
 } 
+
+
+
+Test Cases for above program:
+
+Test case 1:
+
+Welcome to black jack game 0 0 total is 0
+Welcome to Blackjack! You were dealed " 1 and 3. \nYour total is 4
+you want to hit YES or NO
+YES
+Next cards are 8 3 your total is 11+4=15
+
+you want to take next card YES or NO
+
+YES
+Next cards are 9 4 your total is 13+15=28
+
+Sorry, you lost! The your total was 28.
+
+Tests Case 2:
+
+Welcome to black jack game 0 0 total is 0
+Welcome to Blackjack! You were dealed " 1 and 3. \nYour total is 4
+you want to hit YES or NO
+YES
+Next cards are 8 3 your total is 11+4=15
+
+you want to take next card YES or NO
+
+YES
+Next cards are 5 1 your total is 15+6=21
+
+ you won! The your total was 21.
+
+Test Case3:
+
+Welcome to black jack game 0 0 total is 0
+Welcome to Blackjack! You were dealed " 1 and 3. \nYour total is 4
+you want to hit YES or NO
+YES
+Next cards are 8 3 your total is 11+4=15
+
+you want to take next card YES or NO
+
+YES
+Next cards are 1 1 your total is 15+6=21
+
+ you won! The your total was 17.
+
+
