@@ -188,5 +188,101 @@ YES
 Next cards are 1 1 your total is 15+6=21
 
  you won! The your total was 17.
+ 
+ Unit test cases:
+ 		
+		switch (YesOrNo)
+			{
+				case 1: "Yes":
+					Console.WriteLine("\nYou were dealed a(n) " + playerCards[count] + ".\nYour new total is " + total + ".");
+			
+					if (total > 21)
+					{
+						Console.WriteLine("\n you lost. Sorry.  yours's total was " + TotalVal );
+				
+					}
+					break;
+					
+			      case 2:"No":
+					if(total <=21)
+					{
+					do
+					{
+						Console.WriteLine("\nWould you like to take another card?");
+						YesOrNo = Console.ReadLine().ToLower();
+					} while (!YesOrNo .Equals("Yes") && !YesOrNo .Equals("No"));
+					Game();
+					break:
+			     case 3:"No":
+			     		if(total <=17)
+					{
+					do
+					{
+						Console.WriteLine("\nWould you like to take another card?");
+						YesOrNo = Console.ReadLine().ToLower();
+					} while (!YesOrNo .Equals("Yes") && !YesOrNo .Equals("No"));
+					Game();
+					break:
+					
+					Case 4:"Yes":
+				
+					Console.WriteLine("\nYou were dealed a(n) " + playerCards[count] + ".\nYour new total is " + total + ".");
+			
+					if (total > 17)
+					{
+						Console.WriteLine("\n you lost. Sorry.  yours's total was " + TotalVal );
+				
+					}
+					break;
+				
+				
+			}
+			
+			public static void Game()
+			{
+			if (YesOrNo .Equals("Yes"))
+			{
+				Yes();
+			}
+			else if (YesOrNo.Equals("No"))
+			{
+				if (total > TotalVal && total <= 21)
+				{
+					Console.WriteLine("\nCongrats! You won the game! Your's total was " + TotalVal + ".\nWould you like to play again? y/n");
+					
+				}
+				else if (total < TotalVal&& total>17 )
+				{
+					Console.WriteLine("\nSorry, you lost! The your total was " + TotalVal + ".\nWould you like to play again? y/n");
+					
+				}
+
+			}
+		}
+
+		public class UnitTest1  
+		{  
+    			[TestMethod]  
+    		public void TestMethod1()  
+    		{  
+         
+        	Console.WriteLine("Welcome to Blackjack! You were dealed " + playerCards[0] + " and " + playerCards[1] + ". \nYour total is " + total + ".\nDo you want another card YES/NO?");
+				YesOrNo = Console.ReadLine().ToLower(); 
+  
+    		}  
+  
+    		[TestMethod]  
+   		 public void TestMethod2()  
+    		{  
+        	//Second Test  
+       		 while (!YesOrNo .Equals("Yes") && !YesOrNo .Equals("No"));
+			Game(); 
+  
+    		}  
+  
+    
+}  
+
+
 
 
